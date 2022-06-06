@@ -1,0 +1,439 @@
+<div></div><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+    &lt;meta name=&quot;description&quot; content=&quot;&quot; /&gt;
+    &lt;meta name=&quot;author&quot; content=&quot;&quot; /&gt;
+
+    &lt;title&gt;Profile Visualizer | whylogs&lt;/title&gt;
+
+    &lt;link rel=&quot;icon&quot; href=&quot;images/whylabs-favicon.png&quot; type=&quot;image/png&quot; sizes=&quot;16x16&quot; /&gt;
+    &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot; /&gt;
+    &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin /&gt;
+    &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Asap:wght@400;500;600;700&amp;display=swap&quot; rel=&quot;stylesheet&quot; /&gt;
+    &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; /&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css&quot; /&gt;
+
+    &lt;script
+      src=&quot;https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js&quot;
+      integrity=&quot;sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==&quot;
+      crossorigin=&quot;anonymous&quot;
+      referrerpolicy=&quot;no-referrer&quot;
+    &gt;&lt;/script&gt;
+
+    &lt;style type=&quot;text/css&quot;&gt;
+
+      :root {
+        /** Branded colors */
+        --brandSecondary900: #4f595b;
+        --secondaryLight1000: #313b3d;
+        /** Purpose colors */
+        --tealBackground: #eaf2f3;
+      }
+
+      /* RESET STYLE */
+      *,
+      *::after,
+      *::before {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        overflow-y: hidden;
+      }
+
+      /* Screen on smaller screens */
+      .no-responsive {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1031;
+        width: 100vw;
+        height: 100vh;
+        background-color: var(--tealBackground);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .desktop-content {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .no-responsive__content {
+        max-width: 600px;
+        width: 100%;
+        padding: 0 24px;
+      }
+
+      .no-responsive__title {
+        font-size: 96px;
+        font-weight: 300;
+        color: var(--brandSecondary900);
+        line-height: 1.167;
+      }
+
+      .no-responsive__text {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 400;
+        color: var(--brandSecondary900);
+        line-height: 1.5;
+      }
+
+      .svg-container {
+        display: inline-block;
+        position: relative;
+        width: 100%;
+        vertical-align: top;
+        overflow: hidden;
+      }
+
+      .svg-content-responsive {
+        display: inline-block;
+        position: absolute;
+        left: 0;
+      }
+
+      .circle-color {
+       display: inline-block;
+       padding: 5px;
+       border-radius: 50px;
+     }
+
+     .colors-for-distingushing-charts {
+       padding-right: 10px;
+     }
+
+     .display-flex{
+       display: flex;
+     }
+
+     .flex-direction-column {
+       flex-direction: column;
+     }
+
+     .align-items-flex-end {
+       align-items: flex-end;
+     }
+
+     .chart-box-title {
+       width: 98%;
+       justify-content: space-between;
+       margin: 10px;
+       margin-top: 15px;
+       bottom: 0;
+     }
+
+     .chart-box-title p{
+       margin-bottom: 0;
+       font-family: Asap;
+       font-weight: bold;
+       font-size: 18px;
+       line-height: 16px;
+       color: #4F595B;
+     }
+
+     .error-message {
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       color: rgb(255, 114, 71);
+       font-size: 30px;
+       font-weight: 900;
+     }
+
+     @media screen and (min-width: 500px) {
+       .desktop-content {
+         display: block;
+       }
+       .no-responsive {
+         display: none;
+       }
+     }
+    &lt;/style&gt;
+  &lt;/head&gt;
+
+  &lt;body id=&quot;generated-html&quot;&gt;&lt;/body&gt;
+  &lt;script id=&quot;entry-template&quot; type=&quot;text/x-handlebars-template&quot;&gt;
+    
+      &lt;div class=&quot;desktop-content&quot;&gt;
+{{#each this}}              &lt;div class=&quot;chart-box&quot; id=&quot;chart-box&quot;&gt;
+                &lt;div class=&quot;chart-box-title display-flex&quot;&gt;
+                  &lt;p&gt;{{@key}}&lt;/p&gt;
+                  &lt;div class=&quot;display-flex&quot;&gt;
+                    &lt;div class=&quot;colors-for-distingushing-charts&quot;&gt;
+                      &lt;div class=&quot;circle-color&quot; style=&quot;background: #44C0E7;&quot;&gt;&lt;/div&gt;
+                      &lt;text alignment-baseline=&quot;middle&quot; style=&quot;font-size: 15px;&quot;&gt;Target&lt;/text&gt;
+                    &lt;/div&gt;
+                    &lt;div class=&quot;colors-for-distingushing-charts&quot;&gt;
+                      &lt;div class=&quot;circle-color&quot; style=&quot;background: #F5843C&quot;&gt;&lt;/div&gt;
+                      &lt;text alignment-baseline=&quot;middle&quot; style=&quot;font-size: 15px;&quot;&gt;Reference&lt;/text&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;&lt;/div&gt;
+                &lt;div class=&quot;svg-container&quot;&gt;
+                  {{{getDoubleHistogramChart this}}}
+                &lt;/div&gt;
+              &lt;/div&gt;
+{{/each}}      &lt;/div&gt;
+      &lt;div class=&quot;no-responsive&quot;&gt;
+        &lt;div class=&quot;no-responsive__content&quot;&gt;
+          &lt;h1 class=&quot;no-responsive__title&quot;&gt;Hold on! :)&lt;/h1&gt;
+          &lt;p class=&quot;no-responsive__text&quot;&gt;
+            It looks like your current screen size or device is not yet supported by the WhyLabs Sandbox. The Sandbox is
+            best experienced on a desktop computer. Please try maximizing this window or switching to another device. We
+            are working on adding support for a larger variety of devices.
+          &lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    
+  &lt;/script&gt;
+
+  &lt;script src=&quot;https://code.jquery.com/jquery-3.6.0.min.js&quot; integrity=&quot;sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+
+  &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/d3/6.7.0/d3.min.js&quot; integrity=&quot;sha512-cd6CHE+XWDQ33ElJqsi0MdNte3S+bQY819f7p3NUHgwQQLXSKjE4cPZTeGNI+vaxZynk1wVU3hoHmow3m089wA==&quot; crossorigin=&quot;anonymous&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/script&gt;
+
+  &lt;script&gt;
+   function registerHandlebarHelperFunctions() {
+
+    const findAndDeleteUndefined = (axisData) =&gt; {
+      const undefinedAxisIndex = axisData.findIndex((axis) =&gt; axis === undefined)
+      if (undefinedAxisIndex == -1) {
+        return axisData;
+      }
+
+      const result = [...axisData.slice(0, undefinedAxisIndex), ...axisData.slice(undefinedAxisIndex + 1)]
+      return result
+    }
+
+    const filterAndSortChartData = (overlappedHistogramData, histogramData) =&gt; {
+        const filteredData = overlappedHistogramData
+          .map((d) =&gt;
+            histogramData
+            .filter((ref) =&gt; d.axisX === ref.axisX )[0])
+            .sort((a, b) =&gt; {
+              if (+a.axisY &lt; +b.axisY) {
+                return 1;
+              }
+              if (+a.axisY &gt; +b.axisY) {
+                return -1;
+              }
+
+              return 0;
+            })
+            .slice(0, 20)
+
+        return findAndDeleteUndefined(filteredData)
+      }
+
+      class GenerateChartParams {
+        constructor(height, width, data, referenceData, bottomMargin=30, topMargin=5) {
+          this.MARGIN = {
+            TOP: topMargin,
+            RIGHT: 5,
+            BOTTOM: bottomMargin,
+            LEFT: 55,
+          };
+          this.SVG_WIDTH = width;
+          this.SVG_HEIGHT = height;
+          this.CHART_WIDTH = this.SVG_WIDTH - this.MARGIN.LEFT - this.MARGIN.RIGHT;
+          this.CHART_HEIGHT = this.SVG_HEIGHT - this.MARGIN.TOP - this.MARGIN.BOTTOM;
+          this.svgEl = d3.create(&quot;svg&quot;)
+             .attr(&quot;preserveAspectRatio&quot;, &quot;xMinYMin meet&quot;)
+             .attr(&quot;viewBox&quot;, `0 0 ${$(window).width()} ${$(window).height()-30}`)
+             .classed(&quot;svg-content-responsive&quot;, true)
+          this.maxYValue = d3.max([...data, ...referenceData], (d) =&gt; Math.abs(d.axisY));
+          this.xScale = d3
+            .scaleBand()
+            .domain(filterAndSortChartData(data, referenceData).map((sortedCounts) =&gt; sortedCounts?.axisX))
+            .range([this.MARGIN.LEFT, this.MARGIN.LEFT + this.CHART_WIDTH]);
+          this.yScale = d3
+            .scaleLinear()
+            .domain([0, this.maxYValue * 1.2])
+            .range([this.CHART_HEIGHT, 0]);
+        }
+      }
+
+      function chartData(column) {
+        const data = [];
+          if (column.frequentItems) {
+            Object.entries(column.frequentItems).forEach(([key, {value, estimate}], index) =&gt; {
+              data.push({
+                axisY: estimate,
+                axisX: value,
+              });
+            });
+          } else {
+            $(document).ready(() =&gt;
+              $(&quot;.desktop-content&quot;).html(`
+                &lt;p style=&quot;height: ${$(window).height()}px&quot; class=&quot;error-message&quot;&gt;
+                  Something went wrong. Please try again.
+                &lt;/p&gt;
+              `)
+            )
+          }
+
+        return data
+      }
+
+      function generateBarChart(histogramData, overlappedHistogramData) {
+        let yFormat,
+            xFormat;
+        const data = filterAndSortChartData(chartData(histogramData), chartData(overlappedHistogramData)).map((axis, index) =&gt; {
+          if (axis) {
+            const findIndex = chartData(histogramData).findIndex((value) =&gt; value.axisX === axis.axisX)
+            return {
+              group: axis.axisX,
+              profile: axis.axisY,
+              reference_profile: chartData(histogramData)[findIndex].axisY
+            }
+          }
+          return 0;
+        })
+
+        const sizes = new GenerateChartParams($(window).height()-60, $(window).width(), chartData(histogramData), chartData(overlappedHistogramData))
+        let {
+          MARGIN,
+          SVG_WIDTH,
+          SVG_HEIGHT,
+          CHART_WIDTH,
+          CHART_HEIGHT,
+          svgEl,
+          xScale,
+          yScale
+        } = sizes
+
+        const rectColors = [&quot;#44C0E7&quot;, &quot;#F5843C&quot;]
+        const subgroups = [&#x27;reference_profile&#x27;, &#x27;profile&#x27;]
+
+        xScale.padding([0.3])
+
+        const xAxis = d3.axisBottom(xScale).ticks(SVG_WIDTH / 80, xFormat).tickSizeOuter(0);
+        const yAxis = d3.axisLeft(yScale).ticks(SVG_HEIGHT / 40, yFormat);
+        yFormat = yScale.tickFormat(100, yFormat);
+
+        svgEl.append(&quot;g&quot;)
+          .attr(&quot;transform&quot;, `translate(${MARGIN.LEFT}, 0)`)
+          .attr(&quot;id&quot;, &quot;g1&quot;)
+          .call(yAxis)
+          .call(g =&gt; g.select(&quot;.domain&quot;).remove())
+          .call(g =&gt; g.selectAll(&quot;.tick line&quot;)
+              .attr(&quot;x2&quot;, CHART_WIDTH)
+              .attr(&quot;stroke-opacity&quot;, 0.1))
+          .call(g =&gt; g.append(&quot;text&quot;)
+              .attr(&quot;x&quot;, -MARGIN.LEFT)
+              .attr(&quot;y&quot;, 10)
+              .attr(&quot;fill&quot;, &quot;currentColor&quot;)
+              .attr(&quot;text-anchor&quot;, &quot;start&quot;));
+
+        svgEl.append(&quot;text&quot;)
+          .attr(&quot;transform&quot;,
+                &quot;translate(&quot; + (CHART_WIDTH/2) + &quot; ,&quot; +
+                               (CHART_HEIGHT + MARGIN.TOP + 40) + &quot;)&quot;)
+          .style(&quot;text-anchor&quot;, &quot;middle&quot;)
+          .text(&quot;Values&quot;)
+          .style(&quot;font-size&quot;, &quot;15&quot;)
+          .style(&quot;opacity&quot;, &quot;0.6&quot;)
+
+        svgEl.append(&quot;text&quot;)
+          .attr(&quot;transform&quot;, &quot;rotate(-90)&quot;)
+          .attr(&quot;y&quot;, 0)
+          .attr(&quot;x&quot;, 0 - (SVG_HEIGHT / 2))
+          .attr(&quot;dy&quot;, &quot;1em&quot;)
+          .style(&quot;text-anchor&quot;, &quot;middle&quot;)
+          .text(&quot;Counts&quot;)
+          .style(&quot;font-size&quot;, &quot;15&quot;)
+          .style(&quot;opacity&quot;, &quot;0.6&quot;)
+
+        svgEl.append(&quot;g&quot;)
+            .attr(&quot;transform&quot;, `translate(0,${SVG_HEIGHT - MARGIN.BOTTOM})`)
+            .attr(&quot;id&quot;, &quot;g2&quot;)
+            .call(xAxis)
+            .call(g =&gt; g.select(&quot;.domain&quot;).remove())
+            .call(g =&gt; g.selectAll(&quot;.tick line&quot;).remove())
+            .call(g =&gt; g.append(&quot;text&quot;)
+                .attr(&quot;x&quot;, SVG_WIDTH - MARGIN.RIGHT)
+                .attr(&quot;y&quot;, 27)
+                .attr(&quot;fill&quot;, &quot;currentColor&quot;)
+                .attr(&quot;text-anchor&quot;, &quot;end&quot;));
+
+        const xSubgroup = d3.scaleBand()
+          .domain(subgroups)
+          .range([0, xScale.bandwidth()])
+
+        const color = d3.scaleOrdinal()
+          .domain(subgroups)
+          .range(rectColors)
+
+        svgEl.append(&quot;g&quot;)
+           .attr(&quot;id&quot;, &quot;g3&quot;)
+           .selectAll(&quot;g&quot;)
+           .data(data)
+           .enter()
+           .append(&quot;g&quot;)
+             .attr(&quot;transform&quot;, function(d) { return &quot;translate(&quot; + xScale(d?.group) + &quot;,0)&quot;; })
+             .attr(&quot;id&quot;, &quot;g4&quot;)
+           .selectAll(&quot;rect&quot;)
+           .data(function(d) { return subgroups.map(function(key) { return {key: key, value: d &amp;&amp; d[key]}; }); })
+           .enter().append(&quot;rect&quot;)
+             .attr(&quot;x&quot;, function(d) { return xSubgroup(d.key); })
+             .attr(&quot;y&quot;, function(d) { return yScale(d.value); })
+             .attr(&quot;width&quot;, xSubgroup.bandwidth())
+             .attr(&quot;height&quot;, function(d) { return (CHART_HEIGHT - yScale(d.value)); })
+             .attr(&quot;fill&quot;, function(d) { return color(d.key); })
+             .style(&quot;opacity&quot;, &quot;0.8&quot;);
+
+
+         return svgEl._groups[0][0].outerHTML;
+      }
+
+
+      const profileFromCSVfile = {&quot;quality&quot;: {&quot;frequentItems&quot;: [{&quot;value&quot;: &quot;bad&quot;, &quot;estimate&quot;: 1115}, {&quot;value&quot;: &quot;good&quot;, &quot;estimate&quot;: 76}]}}
+
+      Handlebars.registerHelper(&quot;getDoubleHistogramChart&quot;,(column,key) =&gt; {
+        const columnKey = key.data.key
+        try {
+          if (profileFromCSVfile) {
+            return generateBarChart(
+                     column,
+                     profileFromCSVfile[columnKey]
+                   )
+          }
+        } catch (err) {
+          $(document).ready(() =&gt;
+            $(&quot;.desktop-content&quot;).html(`
+              &lt;p style=&quot;height: ${$(window).height()}px&quot; class=&quot;error-message&quot;&gt;
+                Something went wrong. Please try again.
+              &lt;/p&gt;
+            `)
+          )
+        }
+      });
+    }
+
+    function initWebsiteScripts() {
+      $(&quot;.svg-container&quot;).css(&quot;height&quot;, $(window).height() - 32)
+    }
+
+    function initHandlebarsTemplate() {
+      // Replace this context with JSON from .py file
+      const context = {&quot;quality&quot;: {&quot;frequentItems&quot;: [{&quot;value&quot;: &quot;bad&quot;, &quot;estimate&quot;: 267}, {&quot;value&quot;: &quot;good&quot;, &quot;estimate&quot;: 141}]}};
+      // Config handlebars and pass data to HBS template
+      const source = document.getElementById(&quot;entry-template&quot;).innerHTML;
+      const template = Handlebars.compile(source);
+      const html = template(context);
+      const target = document.getElementById(&quot;generated-html&quot;);
+      target.innerHTML = html;
+    }
+
+    // Invoke functions -- keep in mind invokation order
+    registerHandlebarHelperFunctions();
+    initHandlebarsTemplate();
+    initWebsiteScripts();
+  &lt;/script&gt;
+&lt;/html&gt;
+" width=100% height=277px
+        frameBorder=0></iframe>
