@@ -1,9 +1,8 @@
 # WhyLabs whylogs Examples
 
 
-This repository contains select sample code for whylogs. The source code for the libraries are located in the following repos:
+This repository contains select sample Python code for whylogs profile visualizer released in v1. The source code for the library is located in the following repos:
 
 * Python: https://github.com/whylabs/whylogs
-* Java: https://github.com/whylabs/whylogs/tree/mainline/java
 
-I've just handpicked select example files, and built on or modified those in writing a blog post about profile visualizer. -khurchla
+I've built on or modified code examples from the basic examples notebooks there in writing a blog post about profile visualizer on [Medium](https://medium.com/@kathrynhurchla). @khurchla
