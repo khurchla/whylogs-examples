@@ -1,4 +1,4 @@
-# WhyLabs whylogs Examples
+# whylogs profile visualizer examples
 
 
 This repository contains select sample Python code for whylogs profile visualizer released in v1. The source code for the library is located in the following repos:
